@@ -13,7 +13,6 @@ function SignUp() {
     
     useEffect(() =>{
       let usuarioLogado = localStorage.getItem('usuarioLogado')
-      console.log(usuarioLogado)
       if(usuarioLogado != null){
         history("/dashboard")
       }

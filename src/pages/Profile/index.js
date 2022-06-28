@@ -40,7 +40,6 @@ export default function Profile(){
                   .then(imagem => {
                     if(imagem != null){
                       setAvatarUrl(imagem[0].caminho)
-                      console.log(imagem[0].caminho)
                     }
                   })
                 });
@@ -57,6 +56,12 @@ function handleFile(e){
 
  async function handleSave(e){
     e.preventDefault();
+
+    if(nome == "" || email == ""){
+      toast.error("Preencha os campos obrigatórios!")
+      return;
+    }
+
     let emailLogado = localStorage.getItem("EmailLogado")
     const responseApi = fetch("http://localhost:8080/usuarios?email=" + emailLogado,{
         method: "GET",
@@ -96,7 +101,6 @@ function handleFile(e){
   }
 
   async function handleUpload(dado){
-   console.log("Entrou aqui!!")
     let emailLogado = localStorage.getItem("EmailLogado")
     const responseApi = fetch("http://localhost:8080/usuarios?email=" + emailLogado,{
         method: "GET",
@@ -110,14 +114,10 @@ function handleFile(e){
             const responseGetImagem = fetch("http://localhost:8080/imagens?id="+data[0].id)
             .then(response => response.json())
             .then(resultadoImagem =>{
-              console.log(resultadoImagem)
               if(resultadoImagem.length == 0){
                 try{
-                  console.log("entrou aqui na imagem nova!!")
                   var arquivo = new FormData()
                   arquivo.append('data', dado)
-                  console.log("Conteudo imagem avatar"+dado)
-                  console.log("Conteudo do arquivo aqui "+arquivo.data)
                   arquivo.append('idUsuario',data[0].id)
                   const responsePut = fetch("http://localhost:8080/imagens/add",{
                     method: "POST",
@@ -136,7 +136,6 @@ function handleFile(e){
                 var arquivo = new FormData()
                 arquivo.append('data', dado)
                 arquivo.append('idUsuario',data[0].id)
-                console.log(resultadoImagem[0])
                 try{
                   fetch("http://localhost:8080/imagens/"+resultadoImagem[0].id,{
                   method: "PUT",
@@ -175,9 +174,9 @@ function handleFile(e){
 
               <input type="file" accept="image/*" onChange={(e) => handleFile(e.target.files)}/><br/>
               { avatarUrl === null ? 
-                <img src={"http://192.168.1.116:8081/"+avatarUrl} width="250" height="250" alt="Foto de perfil do usuario" />
+                <img src={"http://192.168.56.1:8081/"+avatarUrl} width="250" height="250" alt="Foto de perfil do usuario" />
                 :
-                <img src={"http://192.168.1.116:8081/"+avatarUrl} width="250" height="250" alt="Foto de perfil do usuario" />
+                <img src={"http://192.168.56.1:8081/"+avatarUrl} width="250" height="250" alt="Foto de perfil do usuario" />
               }
             </label>
 

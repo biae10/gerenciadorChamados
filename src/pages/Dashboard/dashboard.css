@@ -1,3 +1,21 @@
+.statusCorLaranja {
+  padding: 3px;
+  border-radius: 3px;
+  color: #FFF;
+  background-color: rgb(246, 169, 53);
+}
+.statusCorAzul {
+  padding: 3px;
+  border-radius: 3px;
+  color: #FFF;
+  background-color: rgb(53, 131, 246);
+}
+.statusCorVerde {
+  padding: 3px;
+  border-radius: 3px;
+  color: #FFF;
+  background-color: #83BF02;
+}
 
 .dashboard{
   display: flex;

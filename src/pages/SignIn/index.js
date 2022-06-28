@@ -13,7 +13,6 @@ function SignIn() {
     
     useEffect(() =>{
       let usuarioLogado = localStorage.getItem('usuarioLogado')
-      console.log(usuarioLogado)
       if(usuarioLogado != null){
         history("/dashboard")
       }
@@ -22,7 +21,6 @@ function SignIn() {
     function handleSubmit(e){
       e.preventDefault();
 
-      console.log(email);
       if(email == '' ||  senha ==''){
         toast.error("Preencha todos os campos!");
         return
