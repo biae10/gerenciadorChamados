@@ -127,8 +127,10 @@ function handleFile(e){
                     },
                     body: arquivo            
                   }).then(response => response.text())
-                  document.location.reload()
-                  toast.success("Imagem adicionada com sucesso!");
+                  .then(() =>{
+                    document.location.reload()
+                    toast.success("Imagem adicionada com sucesso!");
+                  })
                 }catch(e){
                   toast.error("Ocorreu um erro ao adicionar a imagem!");
                 }
@@ -145,7 +147,12 @@ function handleFile(e){
                   },
                   body: arquivo
                   })
-                  document.location.reload()
+                  .then(response => response.text())
+                  .then(() =>{
+                    document.location.reload()
+                    toast.success("Imagem editada com sucesso!")
+                  })
+                  
                 }catch(e){
                   toast.error("Ocorreu um erro ao atualizar a imagem!");
                 }
