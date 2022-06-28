@@ -163,8 +163,6 @@ function validaCNPJ (cnpj) {
                 <Title nome="Clientes">
                     <FiUser size={25} />
                 </Title>
-
-
                 <div className="container">
                     <form onSubmit={(e)=>{handleSubmit(e)}} className="form-profile costumers">
                         <label>Nome</label>
@@ -177,6 +175,9 @@ function validaCNPJ (cnpj) {
                         <input placeholder="Digite o seu Endereço" type="text" value={endereco} onChange={(e) => { setEndereco(e.target.value) }} />
 
                         <button className="button-costumers" type="submit">Salvar</button>
+                        <br/>
+                        <p>Cuidado! Ao remover um cliente você também apaga os chamados relacionados a ele!</p>
+                        <br/>
                     </form>
                 </div>
                 <table>
@@ -212,6 +213,7 @@ function validaCNPJ (cnpj) {
               </tbody>
             </table>
             </div>
+            
         </div>
     );
 }
