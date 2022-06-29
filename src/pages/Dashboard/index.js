@@ -75,7 +75,7 @@ export default function Dashboard(){
                     <td data-label="Cliente">{chamado.cliente.nome}</td>
                     <td data-label="Assunto">{chamado.assunto}</td>
                     <td data-label="Status">
-                      <span className="badge" style={{backgroundColor: '#5cb85c'}}>{chamado.status}</span>
+                      <span  className={chamado.status === "ABERTO" ? "statusCorLaranja" : chamado.status === "PROGRESSO"?  "statusCorAzul" :  "statusCorVerde"}>{chamado.status}</span>
                     </td>
                     <td data-label="Cadastrado">{chamado.dataRegistro}</td>
                     <td data-label="#">

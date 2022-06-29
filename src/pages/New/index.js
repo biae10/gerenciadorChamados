@@ -63,8 +63,11 @@ export default function New() {
 
     async function handleChamado(e) {
         e.preventDefault();
-        console.log(clienteSelecionado)
-        console.log(edicao)
+        if(complemento == ""){
+            toast.error("Preencha o campo complemento!")
+            return;
+        }
+
         let emailLogado = localStorage.getItem("EmailLogado")
         const responseApi = fetch("http://localhost:8080/usuarios?email=" + emailLogado,{
             method: "GET",
@@ -82,7 +85,6 @@ export default function New() {
 
                 if(chamadoEdit[0] != null){
                     try{
-                        console.log(edicao)
                         fetch("http://localhost:8080/chamados/"+edicao,{
                             method: "PUT",
                             headers: {
@@ -93,9 +95,6 @@ export default function New() {
                             body: JSON.stringify({assunto: assunto,status: status,complemento: complemento,  cliente: clienteSelecionado, usuario: data[0].id}) 
                         })
                         toast.success("Chamado editado com sucesso!");
-                        //setAssunto("Suporte");
-                       // setStatus("ABERTO");
-                       // setComplemento("");
                     }catch(e){
                         toast.error("Um erro ocorreu ao editar o chamado!");  
                     }

@@ -39,13 +39,16 @@ export default function Costumers() {
           return;
         }
 
+        if(validaCNPJ(cnpj) != true){
+          toast.error("Informe um CNPJ válido!");
+          return;
+        }
+
         try{
           const responseGetVerifica = fetch("http://localhost:8080/clientes?id="+idClient)
           .then(response => response.json())
           .then(data =>{
-            console.log(idClient)
             if(data != null && data != ""){
-             console.log("Entrou aqui!")
               try{
                 fetch("http://localhost:8080/clientes/"+idClient,{
                   method: "PUT",
@@ -92,6 +95,31 @@ export default function Costumers() {
           toast.error("Ocorreu um erro ao editar o item!");
         }
     }
+  
+function validaCNPJ (cnpj) {
+      var b = [ 6, 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2 ]
+      var c = String(cnpj).replace(/[^\d]/g, '')
+      
+      
+
+      if(c.length !== 14)
+          return false
+  
+          
+      if(/0{14}/.test(c))
+          return false
+    
+      for (var i = 0, n = 0; i < 12; n += c[i] * b[++i]);
+      if(c[12] != (((n %= 11) < 2) ? 0 : 11 - n))
+          return false
+
+      for (var i = 0, n = 0; i <= 12; n += c[i] * b[i++]);
+      if(c[13] != (((n %= 11) < 2) ? 0 : 11 - n))
+          return false
+  
+      return true
+}
+
     async function exlcluir(id){
         try{
           const responseApi = fetch("http://localhost:8080/clientes/"+id,{
@@ -135,8 +163,6 @@ export default function Costumers() {
                 <Title nome="Clientes">
                     <FiUser size={25} />
                 </Title>
-
-
                 <div className="container">
                     <form onSubmit={(e)=>{handleSubmit(e)}} className="form-profile costumers">
                         <label>Nome</label>
@@ -149,6 +175,9 @@ export default function Costumers() {
                         <input placeholder="Digite o seu Endereço" type="text" value={endereco} onChange={(e) => { setEndereco(e.target.value) }} />
 
                         <button className="button-costumers" type="submit">Salvar</button>
+                        <br/>
+                        <p>Cuidado! Ao remover um cliente você também apaga os chamados relacionados a ele!</p>
+                        <br/>
                     </form>
                 </div>
                 <table>
@@ -184,6 +213,7 @@ export default function Costumers() {
               </tbody>
             </table>
             </div>
+            
         </div>
     );
 }
