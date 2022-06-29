@@ -1,70 +1,49 @@
-# Getting Started with Create React App
+# Requisitos
+- BackEnd em Spring Boot (Disponível em https://github.com/biae10/backEndGerenciaChamados )
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+- Http-Server para simular um servidor de imagens local
 
-## Available Scripts
+# Como instalar o projeto
 
-In the project directory, you can run:
+Após clonar o projeto execute o seguinte comando dentro da pasta em que ele foi clonado:
+### `npm install`
 
+Em seguida, dentro da pasta do projeto, execute o seguinte comando:
 ### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Esse comando vai fazer com que um servidor local seja iniciado com a aplicação.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Configurando o serviço de imagens
 
-### `npm test`
+Para o fluxo de upload de imagens funcionar localmente é preciso simular um servidor em nosso diretório de imagens. Para isso, você deve criar uma pasta em seu computador onde serão armazenadas as imagens do upload. A sugestão é criar uma pasta img dentro da pasta publics do próprio projeto.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Após isso é preciso entrar na pasta via terminal e executar o comando:
 
-### `npm run build`
+### `npm install -g http-server`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Em seguida (ainda dentro da pasta no terminal) execute o comando abaixo para iniciar o servidor:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### `http-server ./`
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+O servidor vai trazer essas informações ao ser iniciado.
 
-### `npm run eject`
+![Servidor após ser iniciado](/public/server.png)
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+No campo "Available On" escolha um dos endereços disponíveis e coloque no lugar dos endereços presentes no src das tags <img> da page profile e do componente header.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Configurando o backend
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Após clonar o backend em Spring Boot importe o projeto em sua IDE de preferência (Recomendandos utilizar o eclipse). Em seguida, acesse o imagem controller e substitua o valor da variável endereço pelo caminho da pasta de imagens que foi criada anteriormente.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Execute a aplicação.
 
-## Learn More
+Feito isso o projeto já está pronto para uso.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+# Sobre o projeto
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+O projeto é um gerenciador de chamados feito para a disciplina de programação web.
+Ele possui os seguintes requisitos:
+- Criação, edição e Login de usuários
+- Upload de foto do usuário
+- Crud de clientes
+- Criação, edição e visualização de chamados.
